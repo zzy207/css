@@ -1,0 +1,56 @@
+* {
+    padding:0;
+    margin: 0;
+}
+
+ul li {
+    list-style: none;
+    width: 308px;
+    text-indent: 88px;
+}
+
+ul li button {
+    margin-left:10px;
+}
+
+p {
+    height: 30px;
+    width: 50px;
+    background-color: green;
+    line-height: 30px;
+    margin: 20px auto;
+    text-align: center;
+    font-size: 21px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+#da {
+    width:310px;
+    background-color: #ccc;
+    margin:20px auto 0;
+} 
+
+#xinzeng {
+    display: inline-block;
+    height:20px;
+    width:40px;
+    background-color: red;
+    text-align: center;
+    line-height: 20px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+div#suoyou {
+    background-color: yellow;
+    text-align: center;
+    width: 630px;
+    height: 30px;
+    line-height: 30px;
+    margin: 0 auto;
+}
+
+input {
+    margin: 10px 0;
+}
