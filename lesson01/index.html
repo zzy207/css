@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>欢迎学习js</title>
+</head>
+<body>
+
+
+    <script>
+        
+        // var flag = true;
+            var i = 1;
+
+        setInterval(function() {
+
+            if(i%3 == 1) {
+                document.title = "【欢迎学习js..】一";
+            }else if(i%3 == 2) {
+                document.title = "【你有新消息..】二";
+            }else {
+                document.title = "【第三次......】三";
+            }
+
+            i++;
+
+            // console.log(i);
+
+
+
+            // if(flag) {
+            //     document.title = "【你有新消息...】";
+            // }else {
+            //     document.title = "欢迎学习js";
+            // }
+
+            // flag = !flag;
+
+
+            // var title = document.title;
+
+            // if(title == '欢迎学习HTML') {
+            //     document.title = "你有新消息";
+            // }else {
+            //     document.title = "欢迎学习HTML";
+            // }
+        }, 500);
+
+        
+
+        // console.log(title);
+    </script>
+</body>
+</html>

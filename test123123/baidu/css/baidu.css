@@ -1,0 +1,93 @@
+/**
+ * 百度页面样式
+ */
+/*css rest  css重设*/
+
+* {
+    margin: 0;
+    padding:0;
+}
+
+ui,li {
+    list-style: none;
+}
+
+body {
+    font:12px arial;
+}
+
+
+body {
+    font:12px arial;   /*字体大小。格式*/
+    overflow:hidden;  /*这个还不知道是啥*/
+}
+
+/*style*/
+
+.top-menu {
+    width:430px;
+    height: 50px;
+    /*background-color: red;*/
+    /*第一种方法*/
+    position: absolute;
+    top:20px;
+    right:-10px;
+
+   /* 第二种方法 浮动 会出现问题
+    float: right;
+    margin: 20px 15px 0 0;*/
+}
+
+.top-menu li {
+    float: left;
+    font-size: 13px;
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+.top-menu a {
+    color:#333;
+}
+
+.text-normal a {
+    font-weight:normal;   
+}
+
+.more a {
+    background-color: #38f;
+    color:#fff;
+    text-decoration: none;   /*去掉下划线*/
+    padding: 3px;   /*内边距*/
+
+   /* display: block;   行内元素转化为块元素
+    widows: 60px;
+    height: 23px;*/
+}
+
+.main{
+    width: 645px;
+    height: 150px;
+    margin: 85px auto 0;
+}
+
+.main img{
+    display: block;    /*行内元素转化为块元素*/
+    margin: 0 auto;
+}
+
+.search-text {
+    width: 500px;
+    height: 27px;
+    text-indent: 5px;   /*缩进文本*/
+    outline: none;    /*输入样式框外框的*/
+}
+
+div>button {
+    font-size: 16px;
+    background-color: #3385ff;
+    color:white;
+    width: 100px;
+    height: 33px;
+    margin:-4px;
+    border: -1px;
+}
