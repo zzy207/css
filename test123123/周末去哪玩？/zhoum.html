@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>周末去哪玩</title>
+    <style>
+        #txt {
+            border: 1px solid red;
+            width: 300px;
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+        }
+
+        .Btn {
+            width: 300px;
+            text-align: center;
+            margin:20px 0;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id = "zong">
+        <div id="txt">请点击(开始)按钮</div>
+        <div class = "Btn">
+            <button id = "start">开始</button>
+            <button id = "stop">停止</button>
+        </div>
+        <div>
+            <input  id = "ipt" type="text">
+            <button id = "xinzeng">新增</button>
+        </div>
+    </div>
+    
+
+    <script>
+    var arr = "故宫 长城 十三陵 十渡 圆明园 颐和园".split(' ');
+    var len;
+    var timer;
+    // console.log(arr)
+    var start = document.getElementById('start');
+    var stop = document.getElementById('stop');
+    var xinzeng = document.getElementById('xinzeng');
+    var ipt = document.getElementById('ipt');
+
+    start.onclick = function() {
+        len = arr.length;
+        // if(timer) {
+        //     return;
+        // };
+        timer = setInterval(function() {
+            var txt = document.getElementById('txt');
+            txt.innerHTML = arr[Math.floor(Math.random()*len)];
+        }, 200);
+
+        start.disabled=true;
+    }
+    
+    stop.onclick = function() {
+        clearInterval(timer);
+        start.disabled=false;
+        // timer = undefined;
+    }
+
+    xinzeng.onclick = function() {
+        var i, len = arr.length, j;                 //方法一
+        for(i=0; i<len; i++) {
+            for(j=0; j<(ipt.value.split('|').length); j++) {
+                if((ipt.value.split('|')[j]) == arr[i]) {
+                    alert('已有该景点');
+                    arr.splice(i,1)
+                }           
+            }    
+        }                                
+          
+        arr = arr.concat(ipt.value.split('|'));
+
+        // add(arr);
+        
+        console.log(arr);
+
+        ipt.value = '';
+
+            // function add(arr2) {                 //方法二
+            //     var i, len=arr2.length, j;
+            //     for(i=0; i<len; i++) {
+            //         for(j=i+1; j<len; j++) {
+            //             if(arr2[i] == arr2[j]) {
+            //                 arr2.splice(j,1)
+            //             }
+            //         }
+            //     }
+            //     return arr2;
+            // }
+    };
+    </script>
+    
+</body>
+</html>
+
