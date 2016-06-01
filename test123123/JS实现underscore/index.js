@@ -114,8 +114,8 @@ var arr3 = [
 //     }
 // }();
                                                         //_.every()
-var r = _.every(arr,function(val) {return val>0});
-console.log(r)
+// var r = _.every(arr,function(val) {return val>0});
+// console.log(r)
 
 
 

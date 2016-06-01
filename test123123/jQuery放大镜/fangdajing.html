@@ -1,0 +1,222 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery放大镜</title>
+    <style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    ul li {
+        list-style: none;
+    }
+
+    .fangdajing {
+        height:530px;
+        width:450px;
+        /*background-color: red;*/
+        margin:20px 0 0 20px;
+    }
+
+    .fangdajing .top {
+        height:450px;
+        border:1px solid #333;
+        position: relative;
+    }
+
+    .top img {
+        width:100%;
+    }
+
+    .top .img-masker {
+        width:200px;
+        height:200px;
+        background-color: yellow;
+        opacity: 0.5;
+        filter:alpha(opacity = 50);
+        border:1px solid #ccc;
+        position:absolute;
+        visibility:hidden;
+    }
+
+    .top .img-zoomer {
+        width:500px;
+        height:500px;
+        border:2px solid #ccc;
+        position:absolute;
+        top:-1px;
+        left:500px;
+        visibility:hidden;
+    }
+    
+    .bottom {
+        position:relative;
+        margin-top:15px;
+        border:1px solid yellow;
+    }
+
+    .bottom a {
+        position: absolute;
+        height:50px;
+        width:30px;
+        text-align: center;
+        line-height: 50px;
+        text-decoration: none;
+        font-weight: bold;
+        color:red;
+        background-color:#000;
+        opacity:0.5;
+        folat:alpha(opacity = 50);
+    }
+
+    .bottom a.right {
+        top:0;
+        right:0;
+    }
+
+    .bottom .liss {
+        width:390px;
+        margin:0 30px 0 30px;
+        /*background-color: red;*/
+        overflow:hidden;
+    }
+
+    .bottom .liss ul {
+        height:50px;
+        width:450px;
+    }
+
+    .liss ul li {
+        float:left;
+        width:46px;
+        height:46px;
+        border:2px solid transparent;
+    }
+
+    .liss ul li img {
+        height:100%;
+        width:100%;
+    } 
+
+    .bd {
+        border:2px solid red!important;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="fangdajing">
+        <div class = "top">
+            <img src="img/m1.jpg" bsrc = "img/m11.jpg">
+            <div class = "img-masker"></div>
+            <div class = "img-zoomer"></div>
+        </div>
+        <div class = "bottom">
+            <a href="javascript:;" class = "left">上</a>
+            <div class = "liss">
+                <ul>
+                    <li class = "bd"><img src="img/m1.jpg" bsrc="img/m11.jpg"></li>
+                    <li><img src="img/m2.jpg" bsrc="img/m22.jpg"></li>
+                    <li><img src="img/m3.jpg" bsrc="img/m33.jpg"></li>
+                    <li><img src="img/m1.jpg" bsrc="img/m11.jpg"></li>
+                    <li><img src="img/m2.jpg" bsrc="img/m22.jpg"></li>
+                    <li><img src="img/m3.jpg" bsrc="img/m33.jpg"></li>
+                    <li><img src="img/m1.jpg" bsrc="img/m11.jpg"></li>
+                    <li><img src="img/m2.jpg" bsrc="img/m22.jpg"></li>
+                    <li><img src="img/m3.jpg" bsrc="img/m33.jpg"></li>
+                </ul>
+            </div>
+            <a href="javascript:;" class= "right">下</a>            
+        </div>
+    </div>
+    
+
+    <script src = "jquery-1.12.3.min.js"></script>
+    <script>
+    (function() {
+        var $fdj = $('.fangdajing'),
+            $top = $fdj.find('.top'),
+            $bigimg = $top.find('img'),
+            $bottom = $fdj.find('.bottom'),
+            $ul = $bottom.find('ul'),
+            $liss = $bottom.find('.liss'),
+            $imgMasker = $top.find('.img-masker'),
+            $imgZoomer = $top.find('.img-zoomer');
+                // console.log($fdj);
+        function mouse() {
+            $top.on('mouseenter', function() {
+                    $imgMasker.add($imgZoomer).css('visibility', 'visible');
+                }).on('mouseleave', function() {
+                    $imgMasker.add($imgZoomer).css('visibility', 'hidden');
+                }).on('mousemove', function(e) {
+                    // console.log($bigImgWp.offset())
+                    var w = $imgMasker.width(), h = $imgMasker.height();
+                    var bw = $top.width(), bh = $top.height();
+                    var top = e.pageY - $top.offset().top - h / 2;
+                    var left = e.pageX - $top.offset().left - w / 2;
+                    top = top < 0 ? 0 : top;
+                    left = left < 0 ? 0 : left;
+                    if (top + h > bh) {
+                        top = bh - h;
+                    }
+
+                    if (left + w > bw) {
+                        left = bw - w;
+                    }
+                    // TODO left???
+                    $imgMasker.css({
+                        top: top + 'px',
+                        left: left + 'px'
+                    });
+                     
+                    $imgMasker.css({
+                        top: top + 'px',
+                        left: left + 'px'
+                    });
+
+                    $imgZoomer.css( "background", "url(" + $bigimg.attr("bsrc") + ") no-repeat");
+                    $imgZoomer.css({
+                        "background-position": -left + "px" + " " + - top + "px"
+                    });
+            });
+        };
+        mouse()
+
+
+        function lis() {                //点击小图片加 2px 边框
+            var $lis = $('.liss li');
+            $lis.on('mousemove',function() {
+                $this = $(this);
+                $bigimg
+                        .attr('src',$this.find('img').attr('src'))
+                        .attr('bsrc',$this.find('img').attr('bsrc'))
+                $this.addClass('bd').siblings('.bd').removeClass('bd'); 
+            })    
+            // console.log($this);
+        };
+        lis();
+
+        function btn() {
+            var $btn = $('.bottom a');
+            var len = $ul.find('li').length;
+            var mLeft = len * 50-$liss.width();
+            console.log($liss.width());
+            $btn.on('click',function() {
+                $this = $(this);
+                if($this.hasClass('left')) {
+                    // console.log('left')
+                    $ul.animate({marginLeft: 0});
+                }else {
+                    // console.log('right')
+                    $ul.animate({marginLeft: -mLeft});
+                }
+            })
+
+        }
+        btn();
+    })();
+    </script>
+</body>
+</html>
